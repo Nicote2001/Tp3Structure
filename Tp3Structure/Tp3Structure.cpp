@@ -2,12 +2,19 @@
 //
 
 #include <iostream>
+#include "Game.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
-}
+	Game run;
+	run.PlanetFileReader("Planetes_20.txt");
 
+	run.graph.read();
+
+	run.IsCrossable(0,Ship(250,"ok"),19);
+
+	system("PAUSE");
+}
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
 // Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
 

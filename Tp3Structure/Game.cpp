@@ -107,7 +107,7 @@ void Game::TransactionFileReader(std::string fileName)
 				FicTransaction >> TmpString2;
 				FicTransaction >> TmpString3;
 				//inserer dans la fonction
-				IsCrossable();
+				IsCrossable(0,*shipslist.at(0),19);
 				break;
 
 			case '?2':
@@ -147,8 +147,22 @@ void Game::TransactionFileReader(std::string fileName)
 	}
 }
 
-void Game::IsCrossable()
+void Game::IsCrossable(int start,Ship ship,int destination)
 {
+	//init de la liste de planete visite
+	vector<bool> visited(graph.rows,false);
+	cout << "" << endl;
+	//lancemeent de la fonction
+	graph.dfs(start, visited, ship.fuel, destination);
+
+	if (graph.isCrossable) {
+		cout << "oui il existe un chemin" << endl;
+	}
+	else {
+		cout << "non il n'existe pas de chemin" << endl;
+	}
+
+	graph.isCrossable = false;
 }
 
 void Game::FindShortWay()

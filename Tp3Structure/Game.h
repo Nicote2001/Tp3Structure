@@ -30,7 +30,7 @@ public:
 	void initGraph();
 
 	//pas encore implemanter
-	void IsCrossable();
+	void IsCrossable(int start,Ship ship,int destination);
 	void FindShortWay();
 	void FindCheapestWAy();
 

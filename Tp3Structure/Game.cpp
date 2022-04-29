@@ -106,8 +106,8 @@ void Game::TransactionFileReader(std::string fileName)
 				FicTransaction >> TmpString;
 				FicTransaction >> TmpString2;
 				FicTransaction >> TmpString3;
-				//inserer dans la fonction
-				IsCrossable(0,*shipslist.at(0),19);
+				//inserer dans la fonction en prenant les index des planetes et le vaisseau
+				IsCrossable(GetIndexFromPlanetName(TmpString2),GetShipFromName(TmpString), GetIndexFromPlanetName(TmpString3));
 				break;
 
 			case '?2':
@@ -147,13 +147,13 @@ void Game::TransactionFileReader(std::string fileName)
 	}
 }
 
-void Game::IsCrossable(int start,Ship ship,int destination)
+void Game::IsCrossable(int start,Ship* ship,int destination)
 {
 	//init de la liste de planete visite
 	vector<bool> visited(graph.rows,false);
 	cout << "" << endl;
 	//lancemeent de la fonction
-	graph.dfs(start, visited, ship.fuel, destination);
+	graph.dfs(start, visited, ship->fuel, destination);
 
 	if (graph.isCrossable) {
 		cout << "oui il existe un chemin" << endl;
@@ -265,4 +265,28 @@ Game::Game()
 
 	//ajouter les filename en constant
 	//TransactionFileReader("fileNAME");
+}
+
+//recevoir un objet vaisseau a partir d'un name
+Ship* Game::GetShipFromName(string name) 
+{
+	for (int i = 0; i < shipslist.size(); i++) 
+	{
+		if (shipslist.at(i)->type == name) 
+		{
+			return shipslist.at(i);
+		}
+	}
+}
+
+//recevoir un id de planete par rapport a un name pour povoir parcourir le graphs
+int Game::GetIndexFromPlanetName(string planetName) 
+{
+	for (int i = 0; i < planetList.size(); i++) 
+	{
+		if (planetList.at(i)->name == planetName) 
+		{
+			return planetList.at(i)->id;
+		}
+	}
 }

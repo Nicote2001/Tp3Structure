@@ -30,12 +30,14 @@ public:
 	void initGraph();
 
 	//pas encore implemanter
-	void IsCrossable(int start,Ship ship,int destination);
+	void IsCrossable(int start,Ship* ship,int destination);
 	void FindShortWay();
 	void FindCheapestWAy();
 
 	void CreateConflict(std::string NationA, std::string NationB);
 	void Afficher();
+	Ship* GetShipFromName(string name);
+	int GetIndexFromPlanetName(string planet);
 
 private:
 

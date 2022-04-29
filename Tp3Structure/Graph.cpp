@@ -51,7 +51,6 @@ void Graph::dfs(int start, vector<bool>& visited, int fuel, int destination)
 	if (start == destination) 
 	{
 		isCrossable = true;
-		cout << destination << endl;
 	}
 
 	//on visite la planete

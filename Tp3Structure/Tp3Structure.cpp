@@ -11,7 +11,7 @@ int main()
 
 	run.graph.read();
 
-	run.IsCrossable(0,Ship(250,"ok"),19);
+	run.IsCrossable(run.GetIndexFromPlanetName("Delta_1"),new Ship(250,"ok"),run.GetIndexFromPlanetName("Delta_19"));
 
 	system("PAUSE");
 }
